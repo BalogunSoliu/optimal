@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login Page</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../static/img/output-onlinepngtools.png">
+    <style>
+        @media only screen and (max-width: 600px) {
+            /* For mobile: */
+            div.form {
+                width: 90%;
+                margin-top: 50px;
+            }
+            img[id='togglePassword'] {
+                margin-top: -40%;
+            }
+            h1 {
+                float: right;
+                font-size: 20px;
+            }
+        }
+        
+        @media only screen and (min-width: 600px) {
+            /* For Tab: */
+            div.form {
+                width: 60%;
+            }
+        }
+        
+        @media only screen and (min-width: 768px) {
+            /* For Tab: */
+            div.form {
+                width: 40%;
+            }
+        }
+        
+        @media only screen and (min-width: 922px) {
+            /* For Tab: */
+            div.form {
+                width: 35%;
+            }
+        }
+        
+        @font-face {
+            font-family: comfortaa;
+            src: url(../static/font/Comfortaa-Bold.ttf);
+            font-weight: bold;
+        }
+        
+        body {
+            font-size: 100%;
+            background-color: #fff;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        .form {
+            background-color: transparent;
+            width: 30%;
+            height: auto;
+            top: 50%;
+            left: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%)
+        }
+        
+        form.h1 {
+            color: #3f687d;
+            font-family: comfortaa, Verdana, Geneva, Tahoma, sans-serif;
+            text-align: center;
+        }
+        
+        div.form p:nth-of-type(1) {
+            color: #3f687d;
+            font-family: comfortaa, Verdana, Geneva, Tahoma, sans-serif;
+            text-align: center;
+        }
+        
+        h2 {
+            color: #3f687d;
+            font-size: 2em;
+            font-family: comfortaa;
+            text-align: center;
+            margin: 5px auto 10px auto;
+        }
+        
+        section {
+            padding: 20px;
+            width: 100%;
+            height: auto;
+            background-color: #F5F5F5;
+            border-radius: 10px;
+            box-sizing: border-box;
+            box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        #create {
+            font-family: comfortaa;
+            text-decoration: none;
+            font-size: 15px;
+            background-color: #f5f5f5;
+            text-align: center;
+            padding: 16px 12px;
+            width: 100%;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        #create p {
+            color: #3f687d;
+        }
+        
+        input[type="submit"] {
+            height: 35px;
+            padding: 10px;
+            border: none;
+            width: 50%;
+            color: white;
+            background-color: #3f687d;
+            font-family: comfortaa;
+            font-size: 0.875em;
+            border-radius: 5px;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #4e7f97;
+        }
+        
+        input[type="text"]:focus {
+            outline: none;
+            background-color: #eee;
+        }
+        
+        input[type="password"]:focus {
+            outline: none;
+            background-color: #eee;
+        }
+        
+        input[type='text'] {
+            padding: 14px;
+            background-color: #fff;
+            border: none;
+            font-family: comfortaa, Verdana, Geneva, Tahoma, sans-serif;
+            width: 100%;
+            margin: 10px 0 10px 0;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(63, 104, 125, 0.5), 0px 0px 10px rgba(63, 104, 125, 0.5);
+        }
+        
+        input[type='password'] {
+            padding: 14px 50px 14px 14px;
+            background-color: #fff;
+            border: none;
+            font-family: comfortaa, Verdana, Geneva, Tahoma, sans-serif;
+            width: 100%;
+            margin: 10px 0 10px 0;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(63, 104, 125, 0.5), 0px 0px 10px rgba(63, 104, 125, 0.5);
+        }
+        
+        #signup {
+            font-family: comfortaa;
+            text-decoration: none;
+            font-size: 0.875em;
+            color: green;
+        }
+        
+        #signup:hover {
+            text-decoration: underline;
+        }
+        
+        #forgot {
+            font-family: comfortaa;
+            font-size: 0.875em;
+            color: green;
+            float: right;
+            text-decoration: none;
+            margin-left: 0px
+        }
+        
+        #forgot:hover {
+            text-decoration: underline;
+        }
+        
+        label {
+            font-family: comfortaa;
+            text-decoration: none;
+            color: #3f687d;
+            font-size: 14px;
+        }
+        
+        img[id='togglePassword'] {
+            width: 24px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-top: -20%;
+            margin-left: 90%;
+        }
+        
+        @media only screen and (max-width: 600px) {
+            img[id='togglePassword'] {
+                margin-top: -31.5%;
+                margin-left: 88%;
+            }
+        }
+        /*
+		@media only screen and (min-width: 600px){
+			img[id='togglePassword']{
+			  margin-top: -31%;
+			  margin-left: 88%;
+		  }
+		}
+		@media only screen and (min-width: 768px){
+			img[id='togglePassword']{
+			  margin-top: -30%;
+			  margin-left: 88%;
+		  }
+		}
+		@media only screen and (min-width: 926px){
+			img[id='togglePassword']{
+			  margin-top: -20%;
+			  margin-left: 88%;
+		  }
+		}*/
+        
+        .return {
+            color: #3f687d;
+            background-color: #fff;
+            text-decoration: none;
+            padding: 10px 12px;
+            float: right;
+            width: 30%;
+            text-align: center;
+            font-size: 0.875em;
+            border-radius: 10px;
+            font-family: comfortaa, Verdana, Geneva, Tahoma, sans-serif;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.4)
+        }
+        
+        @media only screen and (max-width: 600px) {
+            /* For mobile: */
+            div.sidebar {
+                width: 60%;
+                display: none;
+                position: fixed;
+                z-index: 4;
+                height: 100%;
+                display: none;
+                top: 0;
+                left: 0;
+            }
+            img.openbar {
+                display: inline-block;
+            }
+            div.sidebar a {
+                text-align: center;
+            }
+            div.sidebar a:first-of-type {
+                margin-top: 100px;
+            }
+            div.middlepanel {
+                width: 100%;
+                display: block;
+                float: none;
+                padding: 5px;
+                margin: 0%;
+            }
+            div.frame {
+                width: 100%;
+                display: block;
+                height: auto
+            }
+        }
+        
+        @media only screen and (min-width: 601px) {
+            /* for desktop*/
+            img.openbar {
+                display: none;
+            }
+            div.sidebar img {
+                display: none;
+            }
+            div.sidebar {
+                text-decoration: none;
+                font-family: verdana;
+                font-size: 1em;
+                display: block;
+                text-align: left;
+                color: #f5f5f5;
+            }
+            .me{
+                margin-left:500px ;
+            }
+            .me2{
+                margin-left:485px ;
+                font-size: 20px;
+                
+            }
+            .form{
+                margin-top: 130px;
+            }
+        }
+        
+        @font-face {
+            font-family: comfortaa;
+            src: url(../static/font/Comfortaa-Bold.ttf);
+            font-weight: bold;
+        }
+        
+        .body {
+            clear: right
+        }
+        
+        .sidebar {
+            background-color: #3f687d;
+            width: 20%;
+            height: 100%;
+            position: fixed;
+            left: 0;
+            top: 0;
+        }
+        
+        .sidebar a:first-of-type {
+            margin-top: 100px;
+        }
+        
+        .sidebar a {
+            text-decoration: none;
+            font-family: comfortaa, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 1em;
+            padding: 12px;
+            display: block;
+            text-align: center;
+            color: #f5f5f5;
+        }
+        
+        .sidebar a:not(.activenav):hover {
+            text-decoration: none;
+            background-color: #f5f5f5;
+            color: #3f687d
+        }
+        
+        .activenav {
+            background-color: #69a5c4;
+            color: #3f687d
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="sidebar" id="mySidenav">
+        <img src="../static/img/close_w.png" alt="close" onclick="closeNav()" style="border: 1px solid white;float: left; clear: right; width: 30px; margin: 10px">
+        <script>
+            function closeNav() {
+                document.getElementById("mySidenav").style.display = 'none';
+            }
+        </script>
+
+        <a class="activenav" href="{{url_for('login')}}">Login</a>
+        <hr>
+        <a href="{{url_for('register')}}">Register</a>
+        <hr>
+        
+        <a href="http://optimalng.com/privacy" target="_top">Privacy</a>
+        <hr>
+        <a href="{{url_for('faq')}}" target="_top">FAQ</a>
+        <hr>
+    </div>
+
+    <p style="float: left;margin-top: 2px;margin-left: 10px;"><img class="openbar" width=75% src="../static/img/menu_black.png" alt="menu" onclick="openNav()">
+
+        <script>
+            function openNav() {
+                document.getElementById("mySidenav").style.display = "block";
+            }
+        </script>
+    </p>
+
+
+    <h1 style="color: green" class="me">Optimal Community</h1>
+    <h1  class="me2"> Get Amazing Business Opportunties </h1>
+
+    <div class="form">
+
+        <section style="margin-top: 10px">
+            <span style="color: grey; margin-left: 5px;">Sign in to continue</span>
+
+
+            <h3 align="center" style="color: green;">{{message}}</h3>
+            <form method="POST" action="{{url_for('login')}}" enctype="multipart/form-data">
+                <label>Phonenumber: </label><br>
+                <input type="text" name="username" placeholder="Phonenumber" value="{{username}}" required/><br>
+                <label>Password:</label><a id="forgot" href="{{ url_for('forgotp') }}" target="_self">Forgot password?</a>
+
+                <input type="password" id="passwordvisibility" name="password" placeholder="Password" required/>
+                <img src="../static/img/hideicon.png" id="togglePassword" ;>
+                <p style="color:red; font-size: 15px; text-align: center;"><b>{{msg}}</b></p>
+                <input type="submit" value="Log In" style="margin-left: 23%;" />
+            </form>
+        </section>
+        <div id="create">
+            <p>New to Optimal? <a id="signup" href="{{ url_for('register') }}"> Create Account</a></p>
+
+        </div>
+        <br/>
+        <br/>
+        <span style="color: grey; margin-left: 5px;margin-bottom: 10px;">Trouble Signing in? <a href="https://chat.whatsapp.com/FK6xRvU9OoaLfBu5uj9IDV">Ask Whatsapp group</a></span>
+        <br/>
+        <br/>
+        <a href="http://optimalng.com/privacy" style="color: grey">Privacy</a> | <a href="{{url_for('faq')}}" style="color: grey">FAQ</a>
+    </div>
+
+
+</body>
+<script>
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('#passwordvisibility');
+    togglePassword.addEventListener('click', function(e) {
+        // Toggle the type attribute
+        const type = password.getAttribute(
+            'type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        // Toggle the eye slash icon
+        if (togglePassword.src.match(
+                "../static/img/hideicon.png")) {
+            togglePassword.src =
+                "../static/img/eyeicon.png";
+        } else {
+            togglePassword.src =
+                "../static/img/hideicon.png";
+        }
+    });
+</script>
+
+</html>

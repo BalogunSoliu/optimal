@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <title>{% block title %}Captcha{% endblock %}</title>
+    <style>
+        @media only screen and (max-width: 600px) {
+            /* For mobile: */
+            div.form {
+                width: 90%;
+            }
+            img[id='togglePassword'] {
+                margin-top: -40%;
+            }
+        }
+        
+        @media only screen and (min-width: 600px) {
+            /* For Tab: */
+            div.form {
+                width: 60%;
+            }
+        }
+        
+        @media only screen and (min-width: 768px) {
+            /* For Tab: */
+            div.form {
+                width: 40%;
+            }
+        }
+        
+        @media only screen and (min-width: 922px) {
+            /* For Tab: */
+            div.form {
+                width: 35%;
+            }
+        }
+        
+        @font-face {
+            font-family: comfortaa;
+            src: url(../static/font/Comfortaa-Bold.ttf);
+            font-weight: bold;
+        }
+        
+        body {
+            font-size: 100%;
+            background-color: #fff;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        .form {
+            background-color: transparent;
+            width: 30%;
+            height: auto;
+            top: 50%;
+            left: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%)
+        }
+        
+        div.form h1 {
+            color: #3f687d;
+            font-family: comfortaa, Verdana, Geneva, Tahoma, sans-serif;
+            text-align: center;
+        }
+        
+        div.form p:nth-of-type(1) {
+            color: #3f687d;
+            font-family: comfortaa, Verdana, Geneva, Tahoma, sans-serif;
+            text-align: center;
+        }
+        
+        h2 {
+            color: #3f687d;
+            font-size: 2em;
+            font-family: comfortaa;
+            text-align: center;
+            margin: 5px auto 10px auto;
+        }
+        
+        section {
+            padding: 20px;
+            width: 100%;
+            height: auto;
+            background-color: #F5F5F5;
+            border-radius: 10px;
+            box-sizing: border-box;
+            box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        #create {
+            font-family: comfortaa;
+            text-decoration: none;
+            font-size: 15px;
+            background-color: #f5f5f5;
+            text-align: center;
+            padding: 16px 12px;
+            width: 100%;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        #create p {
+            color: #3f687d;
+        }
+        
+        input[type="submit"] {
+            height: 35px;
+            padding: 10px;
+            border: none;
+            width: 50%;
+            color: white;
+            background-color: #3f687d;
+            font-family: comfortaa;
+            font-size: 0.875em;
+            border-radius: 5px;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #4e7f97;
+        }
+        
+        input[type="text"]:focus {
+            outline: none;
+            background-color: #eee;
+        }
+        
+        input[type="password"]:focus {
+            outline: none;
+            background-color: #eee;
+        }
+        
+        input[type='text'] {
+            padding: 14px;
+            background-color: #fff;
+            border: none;
+            font-family: comfortaa, Verdana, Geneva, Tahoma, sans-serif;
+            width: 100%;
+            margin: 10px 0 10px 0;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(63, 104, 125, 0.5), 0px 0px 10px rgba(63, 104, 125, 0.5);
+        }
+        
+        input[type='password'] {
+            padding: 14px 50px 14px 14px;
+            background-color: #fff;
+            border: none;
+            font-family: comfortaa, Verdana, Geneva, Tahoma, sans-serif;
+            width: 100%;
+            margin: 10px 0 10px 0;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(63, 104, 125, 0.5), 0px 0px 10px rgba(63, 104, 125, 0.5);
+        }
+        
+        #signup {
+            font-family: comfortaa;
+            text-decoration: none;
+            font-size: 0.875em;
+            color: green;
+        }
+        
+        #signup:hover {
+            text-decoration: underline;
+        }
+        
+        #forgot {
+            font-family: comfortaa;
+            font-size: 0.875em;
+            color: green;
+            float: right;
+            text-decoration: none;
+            margin-left: 0px
+        }
+        
+        #forgot:hover {
+            text-decoration: underline;
+        }
+        
+        label {
+            font-family: comfortaa;
+            text-decoration: none;
+            color: #3f687d;
+            font-size: 14px;
+        }
+        
+        img[id='togglePassword'] {
+            width: 24px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-top: -20%;
+            margin-left: 90%;
+        }
+        
+        @media only screen and (max-width: 600px) {
+            img[id='togglePassword'] {
+                margin-top: -31.5%;
+                margin-left: 88%;
+            }
+        }
+        /*
+		@media only screen and (min-width: 600px){
+			img[id='togglePassword']{
+			  margin-top: -31%;
+			  margin-left: 88%;
+		  }
+		}
+		@media only screen and (min-width: 768px){
+			img[id='togglePassword']{
+			  margin-top: -30%;
+			  margin-left: 88%;
+		  }
+		}
+		@media only screen and (min-width: 926px){
+			img[id='togglePassword']{
+			  margin-top: -20%;
+			  margin-left: 88%;
+		  }
+		}*/
+        
+        .return {
+            color: #3f687d;
+            background-color: #fff;
+            text-decoration: none;
+            padding: 10px 12px;
+            float: right;
+            width: 30%;
+            text-align: center;
+            font-size: 0.875em;
+            border-radius: 10px;
+            font-family: comfortaa, Verdana, Geneva, Tahoma, sans-serif;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.4)
+        }
+        
+        @media only screen and (max-width: 600px) {
+            /* For mobile: */
+            div.sidebar {
+                width: 60%;
+                display: none;
+                position: fixed;
+                z-index: 4;
+                height: 100%;
+                display: none;
+                top: 0;
+                left: 0;
+            }
+            img.openbar {
+                display: inline-block;
+            }
+            div.sidebar a {
+                text-align: center;
+            }
+            div.sidebar a:first-of-type {
+                margin-top: 100px;
+            }
+            div.middlepanel {
+                width: 100%;
+                display: block;
+                float: none;
+                padding: 5px;
+                margin: 0%;
+            }
+            div.frame {
+                width: 100%;
+                display: block;
+                height: auto
+            }
+        }
+        
+        @media only screen and (min-width: 601px) {
+            /* for desktop*/
+            img.openbar {
+                display: none;
+            }
+            div.sidebar img {
+                display: none;
+            }
+            div.sidebar {
+                text-decoration: none;
+                font-family: verdana;
+                font-size: 1em;
+                display: block;
+                text-align: left;
+                color: #f5f5f5;
+            }
+        }
+        
+        @font-face {
+            font-family: comfortaa;
+            src: url(../static/font/Comfortaa-Bold.ttf);
+            font-weight: bold;
+        }
+        
+        .body {
+            clear: right
+        }
+        
+        .sidebar {
+            background-color: #3f687d;
+            width: 20%;
+            height: 100%;
+            position: fixed;
+            left: 0;
+            top: 0;
+        }
+        
+        .sidebar a:first-of-type {
+            margin-top: 100px;
+        }
+        
+        .sidebar a {
+            text-decoration: none;
+            font-family: comfortaa, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 1em;
+            padding: 12px;
+            display: block;
+            text-align: center;
+            color: #f5f5f5;
+        }
+        
+        .sidebar a:not(.activenav):hover {
+            text-decoration: none;
+            background-color: #f5f5f5;
+            color: #3f687d
+        }
+        
+        .activenav {
+            background-color: #69a5c4;
+            color: #3f687d
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar" id="mySidenav">
+        <img src="../static/img/close_w.png" alt="close" onclick="closeNav()" style="float: right; clear: right; width: 30px; margin: 10px">
+        <script>
+            function closeNav() {
+                document.getElementById("mySidenav").style.display = 'none';
+            }
+        </script>
+        <a href="http://optimalng.com" target="_top">Home</a>
+        <a href="{{url_for('login')}}">Login</a>
+        <a href="{{url_for('register')}}">Register</a>
+        <a href="http://optimalng.com/events" target="_top">Events</a>
+        <a href="http://optimalng.com/projects" target="_top">Projects</a>
+        <a href="http://optimalng.com/career" target="_top">Career</a>
+        <a href="http://optimalng.com/contact" target="_top">Contact</a>
+        <a href="http://optimalng.com/privacy" target="_top">Privacy</a>
+        <a href="http://optimalng.com/faq" target="_top">FAQ</a>
+    </div>
+    <div style="margin-left: 21%;">
+        <h1 style="float: left;">
+            <a href="/register" class="btn btn-primary fa fa-angle-double-left">
+                Back</a>
+        </h1>
+
+    </div>
+    <div class="card" style="width: 18rem;margin-left: 21%;">
+        <div class="card-body">
+            {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category,message in messages %} {% if category == 'error' %}
+            <div class="alert alert-danger alter-dismissable fade show" role="alert" position="fixed">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true">&times;</span>
+      </button>
+            </div>
+            {% else %}
+            <div class="alert alert-success alter-dismissable fade show" role="alert" position="fixed">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true">&times;</span>
+      </button>
+            </div>
+            {% endif %} {% endfor %} {% endif %} {% endwith %}
+
+            </p>
+            </h5>
+
+            <form method='post'>
+                <div class="form-group">
+                    <p weight="bold">Set Your Security Questions:</p>
+                    <p class="alert alert-info">Treat your answers like passwords and add special characters</p>
+                    <select class="form-control" name="question1" id="">
+                    <option>In what city were you born?</option>
+                    <option>What is the name of your favorite pet?</option>
+                    <option>What is your mother's maiden name?</option>
+                    <option>What high school did you attend?</option>
+                    <option>What was the name of your elementary school?</option>
+                    <option>What year was your father (or mother) born?</option>
+                </select>
+                    <input type="text" class="form-control" name="QA1" placeholder="security answer" required>
+                    <p></p>
+                    <select class="form-control" name="question2" id="">
+                    <option>What high school did you attend?</option>
+                    <option>What was the name of your elementary school?</option>
+                    <option>In what city were you born?</option>
+                    <option>What is the name of your favorite pet?</option>
+                    <option>What is your mother's maiden name?</option>
+                    <option>What year was your father (or mother) born?</option>
+                </select>
+                    <input class="form-control" type="text" name="QA2" placeholder="security answer" required>
+                    <p></p>
+                    <h5 class="card-title">Prove you're not a robot!
+                        <h6 class="card-subtitle mb-2 text-muted">Solve the question below</h6>
+                    </h5>
+                    <p class="card-text">{{a}}+{{b}}</p>
+                    <input class="form-control" type="text" name='answer' placeholder="answer___" required>
+                    <input type="hidden" name='a' value="{{a}}">
+                    <input type="hidden" name="b" value="{{b}}">
+                    <button class=" btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</html>
